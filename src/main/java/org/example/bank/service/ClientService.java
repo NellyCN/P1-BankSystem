@@ -5,12 +5,17 @@ import org.example.bank.model.Client;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.Optional;
 
 public class ClientService {
-    private List<Client> clients;
+    private List<Client> clients = new ArrayList<>();   // Crear Array List de Clientes
 
-    public ClientService() {
-        clients = new ArrayList<>();        // Crear Array List de Clientes
+    // Método para obtener un cliente por su DNI
+    public Optional<Client> getClientByDni(String dni) {
+        // Usa un stream para buscar el cliente que coincide con el DNI proporcionado
+        return clients.stream()
+                .filter(client -> client.getDni().equals(dni))
+                .findFirst();
     }
 
     // Método para registrar clientes (abstracción de la operación de agregar)
