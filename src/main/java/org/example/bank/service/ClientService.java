@@ -53,8 +53,9 @@ public class ClientService {
 
     // Método para mostrar todos los clientes (para verificación)
     public void displayClients() {
+        System.out.println("");
+        System.out.println("--- Lista de clientes Registrados: ---");
         for (Client client : clients) {
-            System.out.println("----------");
             System.out.println("Nombre: " + client.getName() + " " + client.getLastName());
             System.out.println("DNI: " + client.getDni());
             System.out.println("Email: " + client.getEmail());
