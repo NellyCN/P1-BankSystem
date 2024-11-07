@@ -1,8 +1,10 @@
 package org.example.bank.model;
 
 public class Client {
-    private String name;
-    private String lastName;
-    private String dni;
-    private String email;
+    public String name;
+    public String lastName;
+    public String dni;
+    public String email;
+
+
 }
