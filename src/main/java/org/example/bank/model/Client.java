@@ -32,8 +32,4 @@ public class Client {
         return email;
     }
 
-    @Override
-    public String toString() {
-        return "Nombre: " + name + " " + lastName + "\nDNI: " + dni + "\nEmail: " + email;
-    }
 }

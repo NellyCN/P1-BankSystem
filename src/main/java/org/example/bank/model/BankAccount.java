@@ -1,21 +1,31 @@
 package org.example.bank.model;
 
+import java.util.UUID;
+
 public class BankAccount {
     private String accountNumber;
     private double balance;
     private AccountType accountType;
-    private Client client;
+    private String dniClient;
 
     public enum AccountType {       // Se crea el tipo de dato enum
-        SAVINGS, CURRENT            // Ahorros y Corriente
+        AHORROS, CORRIENTE            // Ahorros y Corriente
+    }
+    public BankAccount() {
+
     }
 
     // Constructor para inicializar una cuenta bancaria
-    public BankAccount(String accountNumber, double initialBalance, AccountType accountType, Client client) {
-        this.accountNumber = accountNumber;
-        this.balance = initialBalance;
+    public BankAccount(AccountType accountType, String dniClient) {
+        this.accountNumber = accountNumber();
+    //    this.balance = initialBalance;
         this.accountType = accountType;
-        this.client = client;
+        this.dniClient = dniClient;
+    }
+
+    // El numero de Cuenta String debe ser único
+    private String accountNumber() {
+        return UUID.randomUUID().toString();
     }
 
     // Métodos Getters y Setters
@@ -43,50 +53,11 @@ public class BankAccount {
         this.accountType = accountType;
     }
 
-    public Client getClient() {
-        return client;
+    public String getDniClient() {     // TIPO Y METODO
+        return dniClient;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    // Método para depositar dinero en la cuenta
-    public void deposit(double amount) {
-        if (amount > 0) {
-            balance += amount;
-        } else {
-            System.out.println("El monto a depositar debe ser positivo.");
-        }
-    }
-
-    // Método para retirar dinero de la cuenta, considerando reglas de negocio
-    public boolean withdraw(double amount) {
-        if (accountType == AccountType.SAVINGS) {
-            if (balance - amount >= 0) { // Validación para cuenta de ahorros
-                balance -= amount;
-                return true;
-            } else {
-                System.out.println("Error: No se puede retirar, saldo insuficiente en cuenta de ahorros.");
-            }
-        } else if (accountType == AccountType.CURRENT) {
-            if (balance - amount >= -500) { // Límite de sobregiro para cuenta corriente
-                balance -= amount;
-                return true;
-            } else {
-                System.out.println("Error: No se puede retirar, límite de sobregiro alcanzado en cuenta corriente.");
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public String toString() {
-        return "BankAccount{" +
-                "numeroCuenta='" + accountNumber + '\'' +
-                ", saldo=" + balance +
-                ", tipoCuenta=" + accountType +
-                ", client=" + client.getName() + " " + client.getLastName() +
-                '}';
+    public void setDniClient(String client) {
+        this.dniClient = client;
     }
 }

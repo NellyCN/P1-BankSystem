@@ -16,7 +16,7 @@ public class Main {
         clientService.registerClient(client1);
 
         // Cliente con DNI duplicado
-        Client client2 = new Client("Maria", "García", "12345678", "maria.garcia@gmail.com");
+       Client client2 = new Client("Maria", "García", "12345678", "maria.garcia@gmail.com");
         clientService.registerClient(client2);
 
         // Cliente con email inválido
@@ -31,14 +31,15 @@ public class Main {
         Client client5 = new Client("Felipe", "Dias", "10203050", "felipe.dias@gmail.com");
         clientService.registerClient(client5);
 
+        // Abrir una cuenta corriente para el cliente no registrado
+        bankAccountService.openAccount("12340000", BankAccount.AccountType.CORRIENTE);
+
         // Abrir una cuenta de ahorros para el cliente registrado
-        bankAccountService.openAccount("12345678", BankAccount.AccountType.SAVINGS);
+        bankAccountService.openAccount("12345678", BankAccount.AccountType.AHORROS);
 
-
+        bankAccountService.deposit("70101050", "100", 100);
         // Mostrar todos los clientes válidos
         clientService.displayClients();
-
-
 
     }
 }
